@@ -59,9 +59,33 @@
     btop
   ];
 
+  # Nginx reverse proxy
+  services.nginx = {
+    enable = true;
+    recommendedProxySettings = true;
+    recommendedTlsSettings = true;
+    
+    virtualHosts = let
+      base = locations: {
+        inherit locations;
+        forceSSL = true;
+        enableACME = true;
+      };    
+      proxy = port: base {
+        "/".proxyPass = "https://127.0.0.1:" + toString(port) + "/";
+      };
+    in {
+      "victorvwier.nl" = proxy 8920 // { default = true; };
+    };
+  };
+
+  security.acme.certs."victorvwier.nl".email = "victorvwier@hotmail.com";
+  security.acme.acceptTerms = true;
+
   # Jellyfin
   services.jellyfin.enable = true;
-  
+  services.jellyfin.openFirewall = true;  
+
   # Satisfactory
   services.satisfactory-server.enable = true;
   services.satisfactory-server.openFirewall = true;
@@ -78,7 +102,7 @@
 
   # Firewall configuration
   networking.firewall.enable = true;
-  networking.firewall.allowedTCPPorts = [ 22 8920 ];
+  networking.firewall.allowedTCPPorts = [ 443 22 8920 ];
   networking.firewall.allowedUDPPorts = [ 1900 7359 ];
 
   # DO NOT CHANGE THIS NUMBER
