@@ -11,6 +11,9 @@
 
       # Home manager
       <home-manager/nixos> 
+      
+      # Satisfactory
+     ./satisfactory.nix
     ];
   
   # Set policy to allow unfree packages
@@ -53,11 +56,16 @@
     jellyfin
     jellyfin-web
     jellyfin-ffmpeg
+    btop
   ];
 
   # Jellyfin
   services.jellyfin.enable = true;
   
+  # Satisfactory
+  services.satisfactory-server.enable = true;
+  services.satisfactory-server.openFirewall = true;
+
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
