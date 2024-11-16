@@ -42,6 +42,15 @@
 
   # Home manager
   home-manager.users.victorvwier = { pkgs, ... }: {
+    # Neovim
+    programs.neovim = {
+      enable = true;
+      extraConfig = ''
+    
+      '';
+    };
+
+
 
     # DO NOT CHANGE THS NUMBER
     home.stateVersion = "24.05";
@@ -49,7 +58,6 @@
 
   # System packages
   environment.systemPackages = with pkgs; [
-    vim
     steamPackages.steamcmd
     git
     tmux
