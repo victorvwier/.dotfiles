@@ -14,7 +14,13 @@
       
       # Satisfactory
      ./satisfactory.nix
-    ];
+
+     # Nginx reverse proxy (Master proxy)
+     # ./nginx-reverse-proxy.nix
+ 
+     # VS Code Server Support
+     (fetchTarball "https://github.com/nix-community/nixos-vscode-server/tarball/master")  
+  ];
   
   # Set policy to allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -74,6 +80,9 @@
   # Satisfactory
   services.satisfactory-server.enable = true;
   services.satisfactory-server.openFirewall = true;
+
+  # VS Code Server
+  services.vscode-server.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh = {
