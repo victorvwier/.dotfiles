@@ -16,7 +16,7 @@
      ./satisfactory.nix
 
      # Nginx reverse proxy (Master proxy)
-     # ./nginx-reverse-proxy.nix
+     ./nginx-reverse-proxy.nix
  
      # VS Code Server Support
      (fetchTarball "https://github.com/nix-community/nixos-vscode-server/tarball/master")  
@@ -96,7 +96,7 @@
 
   # Firewall configuration
   networking.firewall.enable = true;
-  networking.firewall.allowedTCPPorts = [ 443 22 8920 ];
+  networking.firewall.allowedTCPPorts = [ 443 22 8096 8920 ];
   networking.firewall.allowedUDPPorts = [ 1900 7359 ];
 
   # DO NOT CHANGE THIS NUMBER
