@@ -11,7 +11,7 @@
   services.jellyfin = {
     enable = true;
     openFirewall = true;
-    dataDir = "/mnt/HDD/jellyfin/data";
+    dataDir = "/mnt/HDD/jellyfin/";
     user = "victorvwier";
   }; 
 }

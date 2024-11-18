@@ -30,10 +30,10 @@
   };
   
 
-  fileSystems."/mnt/SSD" = {
-    device = "/dev/disk/by-uuid/121c741a-a5f3-45b3-b894-ac813bdc81b0";
-    fsType = "ext4";
-  };
+  # fileSystems."/mnt/SSD" = {
+  #   device = "/dev/disk/by-uuid/121c741a-a5f3-45b3-b894-ac813bdc81b0";
+  #   fsType = "ext4";
+  # };
 
   swapDevices =
     [ { device = "/dev/disk/by-uuid/3458b567-e71f-41d8-bb94-e2c185f5bd84"; }

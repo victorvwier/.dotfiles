@@ -47,11 +47,11 @@
         enableACME = true;
       };
       proxy = port: base {
-        "/".proxyPass = "https://127.0.0.1:" + toString(port) + "/";
+        "/".proxyPass = "http://127.0.0.1:" + toString(port) + "/";
       };
     in {
       # Define example.com as reverse-proxied service on 127.0.0.1:3000
-      "victorvwier.nl" = proxy 8920 // { default = true; };
+      "victorvwier.nl" = proxy 8096 // { default = true; };
     };
   };
 }
