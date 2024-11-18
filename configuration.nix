@@ -15,6 +15,9 @@
       # Satisfactory
      ./satisfactory.nix
 
+     # Jellyfin
+     ./jellyfin/jellyfin.nix
+
      # Nginx reverse proxy (Master proxy)
      ./nginx-reverse-proxy.nix
  
@@ -67,15 +70,8 @@
     steamPackages.steamcmd
     git
     tmux
-    jellyfin
-    jellyfin-web
-    jellyfin-ffmpeg
     btop
   ];
-
-  # Jellyfin
-  services.jellyfin.enable = true;
-  services.jellyfin.openFirewall = true;  
 
   # Satisfactory
   services.satisfactory-server.enable = true;

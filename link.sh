@@ -1,0 +1,1 @@
+sudo ln -s /home/victorvwier/.dotfiles/* /etc/nixos/
