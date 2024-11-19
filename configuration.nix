@@ -43,7 +43,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.victorvwier = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager"]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "docker" ];
     packages = with pkgs; [
             
     ];
@@ -63,6 +63,13 @@
 
     # DO NOT CHANGE THS NUMBER
     home.stateVersion = "24.05";
+  };
+
+  # Docker 
+  virtualisation.docker.enable = true;
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
   };
 
   # System packages
