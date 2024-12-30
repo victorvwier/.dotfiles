@@ -12,9 +12,6 @@
       # Home manager
       <home-manager/nixos> 
       
-      # Satisfactory
-     ./satisfactory.nix
-
      # Jellyfin
      ./jellyfin/jellyfin.nix
 
@@ -78,11 +75,8 @@
     git
     tmux
     btop
+    python3
   ];
-
-  # Satisfactory
-  services.satisfactory-server.enable = true;
-  services.satisfactory-server.openFirewall = true;
 
   # VS Code Server
   services.vscode-server.enable = true;
