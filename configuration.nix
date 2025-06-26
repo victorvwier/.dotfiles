@@ -17,13 +17,18 @@
 
      # Nginx reverse proxy (Master proxy)
      ./nginx-reverse-proxy.nix
- 
+
+     # Qbittorrent
+     ./qbittorrent.nix 
      # VS Code Server Support
      (fetchTarball "https://github.com/nix-community/nixos-vscode-server/tarball/master")  
   ];
   
   # Set policy to allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "qbittorrent-nox-4.6.4"
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -40,10 +45,16 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.victorvwier = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "docker" ];
+    extraGroups = [ "wheel" "networkmanager" "docker" "media"];
     packages = with pkgs; [
             
     ];
+  };
+
+
+  users.users.qbittorrent = {
+    isNormalUser = true;
+    extraGroups = [ "media" ];
   };
 
   # Home manager
@@ -62,21 +73,20 @@
     home.stateVersion = "24.05";
   };
 
-  # Docker 
-  virtualisation.docker.enable = true;
-  virtualisation.docker.rootless = {
-    enable = true;
-    setSocketVariable = true;
-  };
-
   # System packages
   environment.systemPackages = with pkgs; [
-    steamPackages.steamcmd
     git
     tmux
     btop
     python3
   ];
+
+  services.qbittorrent = {
+    enable = true;
+    dataDir = "/var/lib/qbittorrent";
+    port = 8090;
+    openFirewall = true;
+  };
 
   # VS Code Server
   services.vscode-server.enable = true;
@@ -93,7 +103,7 @@
 
   # Firewall configuration
   networking.firewall.enable = true;
-  networking.firewall.allowedTCPPorts = [ 443 22 8096 8920 ];
+  networking.firewall.allowedTCPPorts = [ 80 443 22 ];
   networking.firewall.allowedUDPPorts = [ 1900 7359 ];
 
   # DO NOT CHANGE THIS NUMBER
