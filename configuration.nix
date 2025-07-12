@@ -20,6 +20,7 @@
 
      # Qbittorrent
      ./qbittorrent.nix 
+     
      # VS Code Server Support
      (fetchTarball "https://github.com/nix-community/nixos-vscode-server/tarball/master")  
   ];
@@ -46,8 +47,7 @@
   users.users.victorvwier = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "docker" "media"];
-    packages = with pkgs; [
-            
+    packages = with pkgs; [            
     ];
   };
 
